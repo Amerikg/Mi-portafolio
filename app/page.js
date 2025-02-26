@@ -226,13 +226,13 @@ export default function Home() {
           <div className="w-1/2 relative mt-10 ml-10">
             <img
               src={slides4[currentSlide4]}
-              alt="Proyecto 2 Imagen"
+              alt="Proyecto 4 Imagen"
               className="object-cover w-[200px] h-[200px] rounded-lg mx-auto shadow-lg shadow-gray-500/40"
             />
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => prevSlide(currentSlide2, setCurrentSlide2, slides2)}>
+            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => prevSlide(currentSlide4, setCurrentSlide4, slides4)}>
               &#10094;
             </div>
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => nextSlide(currentSlide2, setCurrentSlide2, slides2)}>
+            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => nextSlide(currentSlide4, setCurrentSlide4, slides4)}>
               &#10095;
             </div>
           </div>
