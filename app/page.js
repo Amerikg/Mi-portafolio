@@ -5,10 +5,14 @@ export default function Home() {
   const [currentSlide1, setCurrentSlide1] = useState(0);
   const [currentSlide2, setCurrentSlide2] = useState(0);
   const [currentSlide3, setCurrentSlide3] = useState(0);
+  const [currentSlide4, setCurrentSlide4] = useState(0);
+  const [currentSlide5, setCurrentSlide5] = useState(0);
 
-  const slides1 = ["/pic.jpg", "/proyecto1-2.jpg", "/proyecto1-3.jpg"];
+  const slides1 = ["/Img/P1/DTS1.webp", "/Img/P1/DTS2.webp"];
   const slides2 = ["/proyecto2-1.jpg", "/proyecto2-2.jpg", "/proyecto2-3.jpg"];
   const slides3 = ["/proyecto3-1.jpg", "/proyecto3-2.jpg", "/proyecto3-3.jpg"];
+  const slides4 = ["/proyecto4-1.jpg", "/proyecto4-2.jpg", "/proyecto4-3.jpg"];
+  const slides5 = ["/Img/P5/AC1.webp", "/Img/P5/AC2.webp", "/Img/P5/AC3.webp"];
 
   // Función para ir al siguiente slide
   const nextSlide = (currentSlide, setCurrentSlide, slides) => {
@@ -18,7 +22,6 @@ export default function Home() {
       setCurrentSlide(0); // Regresar al primer slide si estamos en el último
     }
   };
-
   // Función para ir al slide anterior
   const prevSlide = (currentSlide, setCurrentSlide, slides) => {
     if (currentSlide > 0) {
@@ -27,13 +30,23 @@ export default function Home() {
       setCurrentSlide(slides.length - 1); // Regresar al último slide si estamos en el primero
     }
   };
+  function zoomImage(src) {
+    const overlay = document.getElementById('overlay');
+    const zoomedImage = document.getElementById('zoomedImage');
+    zoomedImage.src = src;
+    overlay.style.display = 'flex';
+  } 
+  function closeZoom() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+  }
 
   return (
     <main className="flex flex-col items-center text-center bg-darkTeal text-textWhite min-h-screen">
       {/* Sección 1 - Introducción */}
       <section className="relative w-full min-h-[400px] bg-lightBlue flex flex-col justify-center items-center overflow-hidden">
-        <img src="/esp.webp" alt="Espiral 1" className="absolute top-10 left-10 w-40 h-40" />
-        <img src="/des.webp" alt="Espiral 2" className="absolute top-10 right-10 w-40 h-50" />
+        <img src="/Img/H/esp.webp" alt="Espiral 1" className="absolute top-10 left-10 w-40 h-40" />
+        <img src="/Img/H/des.webp" alt="Espiral 2" className="absolute top-10 right-10 w-40 h-50" />
         <h1 className="absolute top-20 z-10 left-1/2 transform -translate-x-1/2 text-5xl font-extrabold font-serif text-violet-50"><span class="text-transparent bg-clip-text bg-gradient-to-r to-violet-400 from-rose-400">Hola! </span>Soy America</h1>
         <p className="absolute font-serif mt-[-20]">Desarrolladora web</p>
         <div className="absolute flex gap-6 mt-20 top-60">
@@ -109,7 +122,7 @@ export default function Home() {
             <img
               src={slides1[currentSlide1]}
               alt="Proyecto 1 Imagen"
-              className="object-cover w-[200px] h-[200px] rounded-lg mx-auto shadow-lg shadow-gray-500/40"
+              className="object-cover w-[200px] h-[300px] rounded-lg mx-auto shadow-lg shadow-gray-500/40 cursor-pointer" onClick={() => zoomImage(slides1[currentSlide1])}
             />
             <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => prevSlide(currentSlide1, setCurrentSlide1, slides1)}>
               &#10094;
@@ -117,6 +130,9 @@ export default function Home() {
             <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => nextSlide(currentSlide1, setCurrentSlide1, slides1)}>
               &#10095;
             </div>
+          </div>
+          <div id="overlay" className="overlay" onClick={closeZoom}>
+              <img id="zoomedImage" className="zoomed-image" />
           </div>
         </div>
 
@@ -137,9 +153,11 @@ export default function Home() {
           </div>
           <div className="w-1/2 mr-10 mt-5 text-center">
             <h3 className="text-2xl font-serif mt-5 mb-4 text-violet-400">Aplicacion Movil de Aprendizaje Didactico</h3>
-            <p className="text-violet-800"> Descripcion
+            <p className="text-violet-900 text-justify"> Aplicacion movil desarrollada en React Native y Android Studio, diseñada para niños de 7 a 14 años.
+              La app consta de un juego de memoria donde los jugadores deben emparejar palabras en inglés con sus espectivas imagenes o traducciones.
+              A medida que vanzan, el nivel de dificultad aumenta, ayudándolos a expandir su vocabulario de manera interactiva y divertida.
             </p>
-            <p className="text-violet-800">Tecnologias usadas:</p>
+            <p className="text-violet-900">Tecnologias usadas:React Native, Android Studio, JavaScript.</p>
             <div className="felx items-center mb-5">
               <a href="https://github.com/Amerikg/Aplicacion-Movil-de-Aprendizaje-Didactico" className="inline-flex items-center justify-center h-10 p-5 mt-5 text-base font-medium text-violet-200 rounded-lg bg-violet-400 shadow-lg shadow-gray-500/40 hover:text-purple-100 hover:bg-purple-500">
                   <svg aria-hidden="true" className="w-11 h-5 me-3" viewBox="0 0 20 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +225,7 @@ export default function Home() {
         <div className="w-full flex gap-10 items-start bg-whiteBlue">
           <div className="w-1/2 relative mt-10 ml-10">
             <img
-              src={slides2[currentSlide2]}
+              src={slides4[currentSlide4]}
               alt="Proyecto 2 Imagen"
               className="object-cover w-[200px] h-[200px] rounded-lg mx-auto shadow-lg shadow-gray-500/40"
             />
@@ -274,16 +292,19 @@ export default function Home() {
           </div>
           <div className="w-1/2 relative mt-10 mr-10">
             <img
-              src={slides3[currentSlide3]}
+              src={slides5[currentSlide5]}
               alt="Proyecto 5 Imagen"
-              className="object-cover w-[200px] h-[200px] rounded-lg mx-auto shadow-lg shadow-gray-500/40"
+              className="object-cover w-[300px] h-[200px] rounded-lg mx-auto shadow-lg shadow-gray-500/40 cursor-pointer" onClick={()=> zoomImage(slides5[currentSlide5])}
             />
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => prevSlide(currentSlide3, setCurrentSlide3, slides3)}>
+            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => prevSlide(currentSlide5, setCurrentSlide5, slides5)}>
               &#10094;
             </div>
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => nextSlide(currentSlide3, setCurrentSlide3, slides3)}>
+            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-sky-400/50 text-4xl cursor-pointer" onClick={() => nextSlide(currentSlide5, setCurrentSlide5, slides5)}>
               &#10095;
             </div>
+          </div>
+          <div id="overlay" className="overlay" onClick={closeZoom}>
+              <img id="zoomedImage" className="zoomed-image" />
           </div>
         </div>
 
@@ -298,11 +319,11 @@ export default function Home() {
       {/* Footer - Contacto */}
       <footer id="contacto" className="w-full h-12 bg-darkTeal flex justify-center gap-[40px] items-center">
         <div className="relative flex items-center">
-            <img src="/circulo-sobre.png" alt="Email" className="w-6 h-6" />
+            <img src="/Img/F/circulo-sobre.webp" alt="Email" className="w-6 h-6" />
             <a href= "mailto:amelizruiz@gmail.com" className="ml-2" > amelizruiz@gmail.com </a>
         </div>
         <div className="flex items-center">
-            <img src="/linkedin.png" alt="LinkedIn" className="w-6 h-6" />
+            <img src="/Img/F/linkedin.webp" alt="LinkedIn" className="w-6 h-6" />
             <a href="https://www.linkedin.com/in/america-ruiz-gutierrez-42462113a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="ml-2">LinkedIn</a>
         </div>
       </footer>
